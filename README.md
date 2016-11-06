@@ -1,6 +1,6 @@
-# Vue 2.0 Simple Routing Example
+# Website with Vue 2.0 and page routing 
 
-> A simple example of routing with Vue 2.0 without using vue-router. This branch demonstrates integration of a 3rd-party router. For an example using the raw HTML5 History API, see the [master branch](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/).
+> A simple example of routing with Vue 2.0 
 
 ## Build Setup
 
@@ -15,4 +15,3 @@ npm run dev
 npm run build
 ```
 
-For a detailed explanation of the build process, read the [docs for vue-loader](http://vuejs.github.io/vue-loader).
