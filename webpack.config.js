@@ -74,8 +74,8 @@ module.exports = {
        // noInfo:true,
         colors: true,
         hot: true,
-        inline: true
-      //  headers: { 'Access-Control-Allow-Origin': '*' }
+        inline: true,
+        headers: { 'Access-Control-Allow-Origin': '*' }
     },
     devtool: '#eval-source-map'
 }

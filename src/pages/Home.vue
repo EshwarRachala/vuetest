@@ -6,7 +6,8 @@
 </template>
 
 <script>
-  import MainLayout from '../layouts/Main.vue'
+  import MainLayout from '../layouts/Main.vue';
+  import {vsAlert} from 'vuestrap-base-components/src/components';
   export default {
     components: {
       MainLayout

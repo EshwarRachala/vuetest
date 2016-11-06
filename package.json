@@ -6,7 +6,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-      "dev": "webpack-dev-server --inline --hot",
+    "dev": "webpack-dev-server --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "predeploy": "npm run build",
     "deploy": "surge --project . --domain vue-2-simple-routing-example.surge.sh"
@@ -35,6 +35,7 @@
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.7.0",
     "vue-strap": "^1.1.29",
+    "vuestrap-base-components": "^0.8.10",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
