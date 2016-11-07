@@ -1,6 +1,10 @@
 <template>
   <main-layout>
-    <p>Page not found</p>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Page not found</h1>
+      </div>
+    </div>
   </main-layout>
 </template>
 
