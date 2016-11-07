@@ -18,3 +18,6 @@ npm run dev
 npm run build
 ```
 
+ //"test": "karma start build/karma.conf.js",
+    //"predeploy": "npm run build",
+   // "deploy": "surge --project . --domain vue-2-simple-routing-example.surge.sh"

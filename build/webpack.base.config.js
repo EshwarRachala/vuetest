@@ -1,5 +1,4 @@
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
     resolve: {
@@ -20,6 +19,11 @@ module.exports = {
         themes: ['./src/theme/app.scss',
             './node_modules/vuestrap/theme/bootstrap.scss']
     },
+    vue: {
+        loaders: {
+            js: 'babel!eslint'
+        }
+    },
     module: {
         loaders: [
             {
@@ -28,7 +32,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel!eslint',
                 exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//
             },
             {
@@ -41,38 +45,7 @@ module.exports = {
                 query: {
                     name: '[name].[ext]?[hash]'
                 }
-            }            
+            }
         ]
-    },
-    vue: {
-        loaders: {
-            js: 'babel'
-        }
-    },
-    devServer: {
-        historyApiFallback: true,
-       // noInfo:true,
-        colors: true,
-        hot: true,
-        inline: true,
-        headers: { 'Access-Control-Allow-Origin': '*' }
-    },
-    devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
-        new webpack.optimize.OccurenceOrderPlugin()
-    ])
+    }
 }
