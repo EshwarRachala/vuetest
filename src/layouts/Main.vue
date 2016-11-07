@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid">
         <Navigation/>
-        <!--content start-->
+
         <slot class="container content theme-showcase" role="main"></slot>
-        <!--content end-->
+
         <AppFooter/>
     </div>
 </template>
@@ -14,23 +14,16 @@
   import Navigation from '../components/navigation.vue';
 
   export default {
-      components: {
-          AppFooter:Footer,
-          Navigation
-      },
-      data() {
-          return {
-              count: 0
-          }
-      },
-      ready() {
-
-      },
-      destroyed() {
-
-      }
-
-  }
+    components: {
+      AppFooter: Footer,
+      Navigation,
+    },
+    data() {
+      return {
+        count: 0,
+      }; 
+    }, 
+  };
 
 </script>
 

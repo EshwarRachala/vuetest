@@ -11,7 +11,7 @@
   export default {
     components: {
       MainLayout,
-      Constriction
-    }
-  }
+      Constriction,
+    },
+  };
 </script>

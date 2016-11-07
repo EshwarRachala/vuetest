@@ -17,8 +17,8 @@
                     <v-link href="/contact">Contact</v-link>
                 </ul>
                 <Login/>
-            </div>
-            <!--/.nav-collapse -->
+            </div>    
+
         </div>
     </nav>
 
@@ -26,15 +26,13 @@
 
 <script>
 
-  import VLink from './VLink.vue';
+ import VLink from './VLink.vue';
  import Login from './login.vue';
- 
 
-  export default {
-      components: {
-          VLink,
-          Login
-      }
-  }
+ export default {
+   components: {
+     VLink, Login,
+   },
+ };
 
 </script>

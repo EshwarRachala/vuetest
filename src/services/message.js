@@ -1,3 +1,3 @@
-export default function getMessage() {
+export function getMessage() {
   return 'Hello from Component A!';
 }

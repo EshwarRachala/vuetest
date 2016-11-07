@@ -7,18 +7,17 @@
 </template>
 
 <script>
-  import routes from '../routes'
+  
   export default {
     props: {
       href: String,
-      required: true
-    },
+      required: true },
     computed: {
-      isActive () {
-        return this.href === window.location.pathname
-      }
-    }
-  }
+      isActive() {
+        return this.href === window.location.pathname;
+      },
+    },
+  };
 </script>
 
 <style scoped>
