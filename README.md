@@ -1,6 +1,9 @@
 # Website with Vue 2.0 and page routing 
 
-> A simple example of routing with Vue 2.0 
+> A grocery store is a retail store that primarily sells food. 
+A grocer is a bulk seller of food. Grocery stores often offer non-perishable
+ food that is packaged in cans, bottles and boxes, with some also having fresh
+  produce, butchers, delis, and bakeries.
 
 ## Build Setup
 
