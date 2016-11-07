@@ -1,22 +1,28 @@
 <template>
     <div class="container">
-        <ul>
-            <li>
-                <v-link href="/">Home</v-link>
-                <v-link href="/about">About</v-link>
-            </li>
-        </ul>
+           <ul>
+                <li>
+                    <v-link href="/">Home</v-link>
+                </li>
+                <li>
+                    <v-link href="/about">About</v-link>
+                </li>
+            </ul>
+        <alert show type="success">hi threre</alert>
         <slot></slot>
     </div>
 </template>
 
 <script>
 
+ import {alert,navbar} from 'vue-strap';
   import VLink from '../components/VLink.vue';
+  
   
   export default {
     components: {
-      VLink
+      VLink,
+      alert
     },
      data () {
     return { count: 0 }
