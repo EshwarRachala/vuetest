@@ -1,3 +1,3 @@
-export function getMessage() {
-  return 'Hello from Component A!';
+export function getMessage () {
+	return 'Hello from Component A!'
 }

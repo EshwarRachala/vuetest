@@ -1,0 +1,32 @@
+{
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "extends": "vue",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-return-assign": [
+            "warn",
+            "always"
+        ],
+        "indent": [
+            "warn",
+            "tab"
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "never"
+        ]
+    }
+}

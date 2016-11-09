@@ -1,15 +1,14 @@
 <template>
-    <li v-bind:class="{ active: isActive }">
+  <li v-bind:class="{ active: isActive }">
     <a v-bind:href="href">
-        <slot></slot>
+      <slot></slot>
     </a>
-    </li>
+  </li>
 </template>
-
 <script>
   
-  export default {
-    props: {
+export default {
+ props:{
       href: String,
       required: true },
     computed: {
@@ -19,9 +18,8 @@
     },
   };
 </script>
-
 <style scoped>
-    .active {
-        color: white;
-    }
+  .active {
+    color: white;
+  }
 </style>

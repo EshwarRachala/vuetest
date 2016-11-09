@@ -8,13 +8,12 @@
     </div>
   </main-layout>
 </template>
-
 <script>
-  import MainLayout from '../layouts/Main.vue';
+  import MainLayout from '../layouts/Main.vue'
   import ComponentA from '../../src/components/A.vue'
   export default {
     components: {
       MainLayout,ComponentA,
     },
-  };
+  }
 </script>

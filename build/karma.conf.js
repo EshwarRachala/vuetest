@@ -1,7 +1,7 @@
 var webpackConf = require('./webpack.base.config')
 delete webpackConf.entry
 
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],

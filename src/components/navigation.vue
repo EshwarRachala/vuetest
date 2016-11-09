@@ -17,22 +17,19 @@
                     <v-link href="/contact">Contact</v-link>
                 </ul>
                 <Login/>
-            </div>    
-
+            </div>
         </div>
     </nav>
-
 </template>
-
 <script>
 
- import VLink from './VLink.vue';
- import Login from './login.vue';
+ import VLink from './VLink.vue'
+ import Login from './login.vue'
 
  export default {
    components: {
      VLink, Login,
    },
- };
+ }
 
 </script>
