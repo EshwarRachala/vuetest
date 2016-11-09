@@ -10,7 +10,7 @@
     "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
     "test": "karma start build/karma.conf.js",
     "predeploy": "npm run build",
-    "deploy": "surge --project . --domain eshwartest.surge.sh"
+    "deploy": "surge --project . --domain citymart.surge.sh"
   },
   "keywords": [],
   "license": "ISC",
