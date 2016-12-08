@@ -9,7 +9,8 @@ module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'build.js'
+        filename: 'build.js',
+        publicPath: 'dist/'
     },
     resolveLoader: {
         root: path.join(__dirname, 'node_modules')
@@ -40,7 +41,7 @@ module.exports = {
             loaders: 'style-loader!css-loader'
         }, {
             test: /\.(png|jpg|gif|svg)$/,
-            loader: 'file',
+            loader: 'file-loader',
             query: {
                 name: '[name].[ext]?[hash]'
             }

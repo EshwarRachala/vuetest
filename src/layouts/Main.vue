@@ -5,6 +5,7 @@
     <AppFooter/>
   </div>
 </template>
+
 <script>
     import Footer from '../components/footer.vue'
     import Navigation from '../components/navigation.vue'
