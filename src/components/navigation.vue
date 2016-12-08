@@ -22,14 +22,13 @@
     </nav>
 </template>
 <script>
+    import VLink from './VLink.vue'
+    import Login from './login.vue'
 
- import VLink from './VLink.vue'
- import Login from './login.vue'
-
- export default {
-   components: {
-     VLink, Login,
-   },
- }
-
+    export default {
+        components: {
+            VLink,
+            Login
+        }
+    }
 </script>

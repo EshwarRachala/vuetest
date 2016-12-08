@@ -1,4 +1,30 @@
 {
-  "eslint.enable": true,
-  "jshint.enable": false
+    "eslint.enable": true,
+    "jshint.enable": false,
+    "eslint.autoFixOnSave": true,
+    "eslint.run": "onType",
+    "editor.fontSize": 16,
+    "files.eol": "\n",
+    "eslint.options": {
+        "no-return-assign": [
+            "warn",
+            "always"
+        ],
+        "indent": [
+            "warn",
+            "tab"
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "never"
+        ]
+    }
 }

@@ -8,13 +8,9 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-return-assign": [
-            "warn",
-            "always"
-        ],
         "indent": [
             "warn",
-            "tab"
+            4
         ],
         "linebreak-style": [
             "warn",
@@ -25,6 +21,10 @@
             "single"
         ],
         "semi": [
+            "warn",
+            "never"
+        ],
+        "space-before-function-paren": [
             "warn",
             "never"
         ]

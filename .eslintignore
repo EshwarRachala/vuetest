@@ -1,0 +1,12 @@
+/node_modules/**
+/dist/**
+/npm-debug.log,/**
+/coverage/**
+/docs/**
+/jsdoc/**
+/templates/**
+/tests/bench/**
+/tests/fixtures/**
+/tests/performance/**
+/tmp/**
+test.js
