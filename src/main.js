@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import page from 'page'
 import routes from './routes'
+import store from './store/store'
 
 const app = new Vue({
     el: '#app',
+    store: store,
     data: {
         ViewComponent: {
             render: h => h('div', 'loading...')
