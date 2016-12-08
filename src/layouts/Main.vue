@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <Navigation/>
     <slot class="container content theme-showcase" role="main"></slot>
     <AppFooter/>
