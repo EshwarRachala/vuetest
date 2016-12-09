@@ -1,6 +1,6 @@
 const state = {
     count: 0,
-    name: 'eshwar'
+    name: 'manager'
 }
 
 export default state

@@ -5,7 +5,6 @@ const actions = {
     increment: ({ commit }) => commit(types.INCREMEMNT),
     decrement: ({ commit }) => commit(types.DECREMENT),
     incrementIfOdd({ commit, state }) {
-        debugger
         console.log('hi')
         if ((state.count + 1) % 2 === 0) {
             commit(types.INCREMEMNT)

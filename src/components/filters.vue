@@ -3,21 +3,13 @@
         <header class="ph3 ph5-ns pt3 bb bt b--black-10 mb4">
             <div class="mw9 center">
                 <a class="f6 fw6 b dib mr3 mb3 pb1 link hover-blue black-70 ttc">test</a>
-                <button @click="changename">changename</button>
                 <button @click="increment">+</button>
                 <button @click="decrement">-</button>
                 <button @click="incrementIfOdd">Increment if odd</button>
                 <button @click="decrementAsync">Decrement async</button>
-                
-                <label>Drop down</label>
-                <select v-model="selected" @change="change()">
-                    <option value="Eshwar">Eshwar</option>
-                    <option  value="Mounika">Mounika</option>
-                    <option value="Tanvi">Tanvi</option>                    
-                </select>
+                <dropdown :values='["Eshwar","Mounika","Tanvi"]' lblName="Names" v-on:change="change"></dropdown>       
             </div>            
-        </header>
-        <p>Selected :{{selected}}</p>
+        </header> 
         <slot></slot>
     </div>
 </template>
@@ -25,26 +17,32 @@
 <script>
     import {
         mapGetters,
-        mapActions
+        mapActions,
+        mapState
     } from 'vuex'
+    import dropdown from './dropdown.vue'
 
     export default {
         components: {
-
+            dropdown
         },
-        computed: mapGetters([
-            'evenOrOdd'
-        ]),
+        computed: {
+            ...mapState([
+
+            ]),
+            ...mapGetters([
+
+            ])
+        },
         methods: {
             ...mapActions([
-                'changename',
                 'increment',
                 'decrement',
                 'incrementIfOdd',
                 'decrementAsync'
             ]),
-            change() {
-                this.$store.dispatch('changename', this.selected)
+            change(selected) {
+                this.$store.dispatch('changename', selected)
             }
         }
     }
