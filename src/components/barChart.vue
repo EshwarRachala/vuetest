@@ -43,8 +43,6 @@
 
                 var barWidth = width / data.length
 
-                // select all bars on the graph, take them out, and exit the previous data set. 
-                // then you can add/enter the new data set
                 var bars = chart.selectAll('.bar')
                     .remove()
                     .exit()
@@ -83,12 +81,8 @@
         mounted: function() {
             const d3 = this.$d3
             const data = this.data
-
-
             let height = this.height
             let width = this.width
-
-
             var margin = {
                 top: 20,
                 right: 20,

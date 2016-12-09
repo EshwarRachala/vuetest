@@ -9,9 +9,9 @@ const state = {
         Auths: 'ipAuth',
         Frequency: 'monthly'
     },
-    bardata: [{ 'name': 'Eshwar', 'age': 33 },
-        { 'name': 'Peter', 'age': 3 },
-        { 'name': 'JOhn', 'age': 15 }
+    bardata: [{ 'name': 'Peter', 'age': 33 },
+        { 'name': 'James', 'age': 3 },
+        { 'name': 'Nora', 'age': 15 }
     ]
 }
 
@@ -32,11 +32,11 @@ const mutations = {
         if (criteria.key === 'Auths') {
             state.criteria.Auths = criteria.value
             state.bardata = null
-            state.bardata = [{ 'name': 'Eshwar', 'age': 33 }, { 'name': 'Mounika', 'age': 27 }]
+            state.bardata = [{ 'name': 'David', 'age': 33 }, { 'name': 'Sachin', 'age': 27 }]
         } else if (criteria.key === 'Frequency') {
             state.criteria.Frequency = criteria.value
             state.bardata = null
-            state.bardata = [{ 'name': 'Eshwar', 'age': 33 }, { 'name': 'Mounika', 'age': 27 }, { 'name': 'Tanvi', 'age': 3 }]
+            state.bardata = [{ 'name': 'Sunil', 'age': 33 }, { 'name': 'Calib', 'age': 27 }, { 'name': 'Tanya', 'age': 3 }]
         }
     },
     [types.BARDATA](state, value) {
