@@ -2,8 +2,8 @@
     <main-layout>
         <Filters>
             <section class="ph3 ph5-ns">
-                <h5>BarChart</h5>
-                <barchart :data="bardata"/>              
+                <h5>Alphabet Update</h5>
+                <alpha :data="bardata"/>              
             </section>
         </Filters>
     </main-layout>
@@ -12,7 +12,7 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     import Filters from '../components/filters.vue'
-    import barchart from '../components/barChart.vue'
+    import alpha from '../components/alpha.vue'
     import {
         mapGetters,
         mapState
@@ -22,7 +22,7 @@
         components: {
             MainLayout,
             Filters,
-            barchart
+            alpha
         },
         computed: {
             ...mapState([

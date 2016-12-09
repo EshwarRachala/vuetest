@@ -9,7 +9,10 @@ const state = {
         Auths: 'ipAuth',
         Frequency: 'monthly'
     },
-    bardata: [{ 'name': 'Eshwar', 'age': 33 }]
+    bardata: [{ 'name': 'Eshwar', 'age': 33 },
+        { 'name': 'Peter', 'age': 3 },
+        { 'name': 'JOhn', 'age': 15 }
+    ]
 }
 
 const getters = {

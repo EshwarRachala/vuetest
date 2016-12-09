@@ -5,6 +5,7 @@
         </a>
         <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
             <a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" v-bind:class="{ active: isActive }" href="/" title="Home">Home</a>
+               <a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" v-bind:class="{ active: isActive }" href="/graph" title="Graph">Graph</a>
         </div>
     </nav>
 </template>
