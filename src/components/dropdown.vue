@@ -12,7 +12,10 @@
         props: ['values', 'lblName'],
         methods: {
             change(selected) {
-                this.$emit('change', selected)
+                this.$emit('change', {
+                    key: this.lblName,
+                    value: selected
+                })
             }
         }
     }

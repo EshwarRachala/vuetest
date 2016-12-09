@@ -1,3 +1,6 @@
 export const INCREMEMNT = 'INCREMENT'
 export const DECREMENT = 'DECREMENT'
 export const CHANGENAME = 'CHANGENAME'
+export const CHANGEOPAUTH = 'CHANGEOPAUTH'
+export const BARDATA = 'BARDATA'
+export const CRITERIA_CHANGED = 'CRITERIA_CHANGED'

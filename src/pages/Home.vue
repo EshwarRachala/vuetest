@@ -2,10 +2,13 @@
     <main-layout>
         <Filters>
             <section class="ph3 ph5-ns">
-                <h5>Hello Vue from Home page</h5>
-                <p>Clicked: {{ $store.state.count }} times, count is <strong>{{ evenOrOdd }}</strong>.</p>
-                <p>Current names <strong>: {{$store.state.name}}</strong>
-                </p>
+                <h5>BarChart</h5>
+                <ul>
+                    <li v-for="value in bardata">
+                        {{value.name}} age is {{value.age}}
+                    </li>
+                </ul>
+                <barchart :data="bardata"/>              
             </section>
         </Filters>
     </main-layout>
@@ -14,6 +17,8 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     import Filters from '../components/filters.vue'
+    import barchart from '../components/barChart.vue'
+
     import {
         mapGetters,
         mapState
@@ -22,15 +27,14 @@
     export default {
         components: {
             MainLayout,
-            Filters
+            Filters,
+            barchart
         },
         computed: {
             ...mapState([
 
             ]),
-            ...mapGetters([
-                'evenOrOdd'
-            ])
+            ...mapGetters(['bardata'])
         }
     }
 </script>

@@ -1,7 +1,6 @@
 import * as types from './mutation-types'
 
 const actions = {
-    changename: ({ commit }, value) => commit(types.CHANGENAME, value),
     increment: ({ commit }) => commit(types.INCREMEMNT),
     decrement: ({ commit }) => commit(types.DECREMENT),
     incrementIfOdd({ commit, state }) {

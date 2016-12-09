@@ -2,6 +2,9 @@ import Vue from 'vue'
 import page from 'page'
 import routes from './routes'
 import store from './store/store'
+import VueD3 from 'vue-d3'
+
+Vue.use(VueD3)
 
 const app = new Vue({
     el: '#app',
@@ -23,7 +26,6 @@ Object.keys(routes).forEach((route) => {
         /* eslint-disable*/
     page(route, () => app.ViewComponent = Component)
 })
-
 page('*', () => app.ViewComponent = require('./pages/404.vue'))
 page()
 
