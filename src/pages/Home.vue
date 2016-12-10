@@ -12,7 +12,7 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     import Filters from '../components/filters.vue'
-    import barchart from '../components/barChart.vue'
+    import barchart from '../components/bar.vue'
     import {
         mapGetters,
         mapState

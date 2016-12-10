@@ -1,8 +1,4 @@
 <style scoped>
-    .text {
-        font: bold 48px monospace
-    }
-    
     .enter {
         fill: green
     }
