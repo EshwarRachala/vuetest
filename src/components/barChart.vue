@@ -1,17 +1,22 @@
+<style>
+    .bar {
+        fill: steelblue
+    }
+</style>
 <template>
-    <div id="divbarchart" style="height:345px;">
-    <div id="divgraph"></div>
-    </div>
+	<div id="chartcontainer" style="height:345px;">
+        <h4 style="text-align:center;">Bar chart</h4>
+		<div id="divgraph"></div>
+	</div>
 </template>
-
 <script>
     export default {
         props: ['data'],
         data() {
             return {
-                chart: null,
-                xChart: null,
-                yChart: null,
+                svg: null,
+                x: null,
+                y: null,
                 height: null,
                 width: null,
                 xAxis: null,
@@ -27,9 +32,9 @@
             update: function(data) {
                 const d3 = this.$d3
 
-                const chart = this.chart
-                const xChart = this.xChart
-                const yChart = this.yChart
+                const chart = this.svg
+                const xChart = this.x
+                const yChart = this.y
                 const height = this.height
                 const xAxis = this.xAxis
                 const yAxis = this.yAxis
@@ -43,15 +48,17 @@
                     return +d.age
                 })])
 
-                var barWidth = width / data.length
+                const barWidth = width / data.length
 
-                var bars = chart.selectAll('.bar')
-                    .remove()
-                    .exit()
-                    .data(data)
-                    // now actually give each rectangle the corresponding data
+                // get the bars
+                const bars = chart.selectAll('rect').data(data)
+
+                // remove existing bars
+                bars.exit().remove()
+
                 bars.enter()
                     .append('rect')
+                    .merge(bars)
                     .attr('class', 'bar')
                     .attr('x', function(d, i) {
                         return i * barWidth + 1
@@ -59,13 +66,14 @@
                     .attr('y', function(d) {
                         return yChart(d.age)
                     })
+                    .attr('width', barWidth - 1)
                     .attr('height', function(d) {
                         return height - yChart(d.age)
                     })
-                    .attr('width', barWidth - 1)
+
 
                 // left axis
-                chart.select('.y')
+                chart.select('.yAxis')
                     .call(yAxis)
                     // bottom axis
                 chart.select('.xAxis')
@@ -82,50 +90,42 @@
         },
         mounted: function() {
             const d3 = this.$d3
-            const data = this.data
-            let height = this.height
-            let width = this.width
-            var margin = {
-                    top: 20,
-                    right: 20,
-                    bottom: 95,
-                    left: 50
-                }
-                // width = 800
-                // height = 500
+            const margin = {
+                top: 15,
+                right: 15,
+                bottom: 60,
+                left: 50
+            }
 
-            width = document.getElementById('divbarchart').offsetWidth
-            height = document.getElementById('divbarchart').offsetHeight - document.getElementById('divgraph').offsetHeight
+            this.width = document.getElementById('chartcontainer').offsetWidth
+            this.height = (document.getElementById('chartcontainer').offsetHeight - document.getElementById('divgraph').offsetHeight)
 
+            this.svg = d3.select(this.$el).append('svg')
+                .attr('width', '100%')
+                .attr('height', '100%')
+                .attr('viewBox', '0 0 ' + (Math.max(this.width, this.height) + margin.left + margin.right) + ' ' +
+                    (Math.min(this.width, this.height) + margin.top + margin.bottom))
+                .attr('preserveAspectRatio', 'xMinYMin meet')
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
+            this.x = d3.scaleBand().domain(this.data.map(function(d) {
+                return d.name
+            })).range([0, this.width])
 
-            this.height = height;
-            this.width = width;
+            this.y = d3.scaleLinear().domain([0, d3.max(this.data, function(d) {
+                return +d.age
+            })]).range([this.height, 0])
 
-            this.chart = d3.select(this.$el).append('svg')
-                .attr('width', width + margin.left + margin.right)
-                .attr('height', height + margin.top + margin.bottom)
-                .append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+            this.xAxis = d3.axisBottom(this.x)
 
-            this.xChart = d3.scaleBand()
-                .range([0, width])
+            this.yAxis = d3.axisLeft(this.y)
 
-            this.yChart = d3.scaleLinear()
-                .range([height, 0])
+            this.svg.append('g').attr('class', 'y axis').call(this.yAxis)
 
-            this.xAxis = d3.axisBottom(this.xChart)
-            this.yAxis = d3.axisLeft(this.yChart)
-
-            // set up axes
-            // left axis
-            this.chart.append('g')
-                .attr('class', 'y axis')
-                .call(this.yAxis)
-
-            // bottom axis
-            this.chart.append('g')
+            this.svg.append('g')
                 .attr('class', 'xAxis')
-                .attr('transform', 'translate(0,' + height + ')')
+                .attr('transform', 'translate(0,' + this.height + ')')
                 .call(this.xAxis)
                 .selectAll('text')
                 .style('text-anchor', 'end')
@@ -135,7 +135,18 @@
                     return 'rotate(-65)'
                 })
 
-            this.update(data)
+            // add labels
+            this.svg
+                .append('text')
+                .attr('transform', 'translate(-35,' + (this.height + margin.bottom) / 2 + ') rotate(-90)')
+                .text('% of total watch time')
+
+            this.svg
+                .append('text')
+                .attr('transform', 'translate(' + (this.width / 2) + ',' + (this.height + margin.bottom - 5) + ')')
+                .text('name group')
+
+            this.update(this.data)
         }
     }
 </script>

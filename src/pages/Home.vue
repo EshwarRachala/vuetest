@@ -2,7 +2,7 @@
     <main-layout>
         <Filters>
             <section class="ph3 ph5-ns">
-                <h5>BarChart</h5>
+                <linegraph :data="linedata"/>
                 <barchart :data="bardata"/>              
             </section>
         </Filters>
@@ -12,7 +12,9 @@
 <script>
     import MainLayout from '../layouts/Main.vue'
     import Filters from '../components/filters.vue'
-    import barchart from '../components/bar.vue'
+    import barchart from '../components/barchart.vue'
+    import linegraph from '../components/linegraph.vue'
+
     import {
         mapGetters,
         mapState
@@ -22,13 +24,14 @@
         components: {
             MainLayout,
             Filters,
-            barchart
+            barchart,
+            linegraph
         },
         computed: {
             ...mapState([
 
             ]),
-            ...mapGetters(['bardata'])
+            ...mapGetters(['bardata', 'linedata'])
         }
     }
 </script>

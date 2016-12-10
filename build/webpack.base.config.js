@@ -15,11 +15,6 @@ module.exports = {
     resolveLoader: {
         root: path.join(__dirname, 'node_modules')
     },
-    themeLoader: {
-        themes: ['./src/theme/app.scss',
-            './node_modules/vuestrap/theme/bootstrap.scss'
-        ]
-    },
     eslint: {
         configFile: './.eslintrc.json'
     },
