@@ -56,7 +56,6 @@
                 // remove existing bars
                 bars.exit().remove()
 
-                // add new bars 
                 bars.enter()
                     .append('rect')
                     .merge(bars)
