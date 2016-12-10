@@ -31,12 +31,13 @@ const mutations = {
     [types.CRITERIA_CHANGED](state, criteria) {
         if (criteria.key === 'Auths') {
             state.criteria.Auths = criteria.value
-            state.bardata = null
-            state.bardata = [{ 'name': 'David', 'age': 33 }, { 'name': 'Sachin', 'age': 27 }]
+            state.bardata.push({ 'name': 'Sachin', 'age': 27 })
         } else if (criteria.key === 'Frequency') {
             state.criteria.Frequency = criteria.value
-            state.bardata = null
-            state.bardata = [{ 'name': 'Sunil', 'age': 33 }, { 'name': 'Calib', 'age': 27 }, { 'name': 'Tanya', 'age': 3 }]
+            state.bardata = [{ 'name': 'Peter', 'age': 33 },
+                { 'name': 'James', 'age': 3 },
+                { 'name': 'Nora', 'age': 15 }
+            ]
         }
     },
     [types.BARDATA](state, value) {

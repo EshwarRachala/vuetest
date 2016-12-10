@@ -48,15 +48,18 @@
                     return +d.age
                 })])
 
-                var barWidth = width / data.length
+                const barWidth = width / data.length
 
-                var bars = chart.selectAll('.bar')
-                    .remove()
-                    .exit()
-                    .data(data)
-                    // now actually give each rectangle the corresponding data
+                // get the bars
+                const bars = chart.selectAll('.bar').data(data)
+
+                // remove existing bars
+                bars.exit().remove()
+
+                // add new bars 
                 bars.enter()
                     .append('rect')
+                    .merge(bars)
                     .attr('class', 'bar')
                     .attr('x', function(d, i) {
                         return i * barWidth + 1
@@ -106,9 +109,13 @@
                 .append('g')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-            this.x = d3.scaleBand().range([0, this.width])
+            this.x = d3.scaleBand().range([0, this.width]).domain(this.data.map(function(d) {
+                return d.name
+            }))
 
-            this.y = d3.scaleLinear().range([this.height, 0])
+            this.y = d3.scaleLinear().range([this.height, 0]).domain([0, d3.max(this.data, function(d) {
+                return +d.age
+            })])
 
             this.xAxis = d3.axisBottom(this.x)
 
@@ -127,7 +134,6 @@
                 .attr('transform', function(d) {
                     return 'rotate(-65)'
                 })
-
 
             // add labels
             this.svg
