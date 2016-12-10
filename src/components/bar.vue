@@ -70,7 +70,7 @@
                     .attr('width', barWidth - 1)
 
                 // left axis
-                chart.select('.y')
+                chart.select('.yAxis')
                     .call(yAxis)
                     // bottom axis
                 chart.select('.xAxis')
@@ -100,7 +100,8 @@
             this.svg = d3.select(this.$el).append('svg')
                 .attr('width', '100%')
                 .attr('height', '100%')
-                .attr('viewBox', '0 0 ' + (this.width + margin.left + margin.right) + ' ' + (this.height + margin.top + margin.bottom))
+                .attr('viewBox', '0 0 ' + (Math.max(this.width, this.height) + margin.left + margin.right) + ' ' +
+                    (Math.min(this.width, this.height) + margin.top + margin.bottom))
                 .attr('preserveAspectRatio', 'xMinYMin meet')
                 .append('g')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
