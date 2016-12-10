@@ -9,9 +9,11 @@ const state = {
         Auths: 'ipAuth',
         Frequency: 'monthly'
     },
-    bardata: [{ 'name': 'Peter', 'age': 33 },
-        { 'name': 'James', 'age': 3 },
-        { 'name': 'Nora', 'age': 15 }
+    bardata: [{ 'name': 'Peter', 'age': 33 }, { 'name': 'James', 'age': 3 }, { 'name': 'Nora', 'age': 15 }],
+    linedata: [{ date: '1-May-12', 'close': 58.33 },
+        { date: '21-Jan-13', 'close': 158.33 },
+        { date: '11-May-13', 'close': 18.33 },
+        { date: '1-Dec-14', 'close': 88.33 }
     ]
 }
 
@@ -19,12 +21,12 @@ const getters = {
     auths: state => state.filters.auths,
     names: state => state.filters.names,
     frequency: state => state.filters.frequency,
-    bardata: state => state.bardata
+    bardata: state => state.bardata,
+    linedata: state => state.linedata
 }
 
 const actions = {
-    CriteriaChanged: ({ commit }, criteria) => commit(types.CRITERIA_CHANGED, criteria),
-    getBarData: ({ commit }, value) => commit(types.BARDATA, value)
+    CriteriaChanged: ({ commit }, criteria) => commit(types.CRITERIA_CHANGED, criteria)
 }
 
 const mutations = {
@@ -34,10 +36,7 @@ const mutations = {
             state.bardata.push({ 'name': 'Sachin', 'age': 27 })
         } else if (criteria.key === 'Frequency') {
             state.criteria.Frequency = criteria.value
-            state.bardata = [{ 'name': 'Peter', 'age': 33 },
-                { 'name': 'James', 'age': 3 },
-                { 'name': 'Nora', 'age': 15 }
-            ]
+            state.bardata = [{ 'name': 'Peter', 'age': 33 }, { 'name': 'James', 'age': 3 }, { 'name': 'Nora', 'age': 15 }]
         }
     },
     [types.BARDATA](state, value) {
