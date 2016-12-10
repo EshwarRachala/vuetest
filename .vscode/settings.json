@@ -1,10 +1,16 @@
  {
      "eslint.enable": true,
-     "jshint.enable": false,
+     "jshint.enable": true,
+     "git.enabled": true,
+     "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+     "javascript.validate.enable": true,
      "eslint.autoFixOnSave": true,
-     "eslint.run": "onType",
      "editor.fontSize": 16,
      "html.format.enable": true,
+     "html.format.indentHandlebars": true,
+     "javascript.format.insertSpaceAfterCommaDelimiter": true,
+     "editor.renderIndentGuides": true,
+     "editor.detectIndentation": true,
      "html.suggest.html5": true,
      "html.suggest.ionic": true,
      "html.suggest.angular1": true,
@@ -45,3 +51,4 @@
              ]
          }
      }
+ }

@@ -51,7 +51,7 @@
                 const barWidth = width / data.length
 
                 // get the bars
-                const bars = chart.selectAll('.bar').data(data)
+                const bars = chart.selectAll('rect').data(data)
 
                 // remove existing bars
                 bars.exit().remove()
@@ -66,10 +66,11 @@
                     .attr('y', function(d) {
                         return yChart(d.age)
                     })
+                    .attr('width', barWidth - 1)
                     .attr('height', function(d) {
                         return height - yChart(d.age)
                     })
-                    .attr('width', barWidth - 1)
+
 
                 // left axis
                 chart.select('.yAxis')
@@ -108,13 +109,13 @@
                 .append('g')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-            this.x = d3.scaleBand().range([0, this.width]).domain(this.data.map(function(d) {
+            this.x = d3.scaleBand().domain(this.data.map(function(d) {
                 return d.name
-            }))
+            })).range([0, this.width])
 
-            this.y = d3.scaleLinear().range([this.height, 0]).domain([0, d3.max(this.data, function(d) {
+            this.y = d3.scaleLinear().domain([0, d3.max(this.data, function(d) {
                 return +d.age
-            })])
+            })]).range([this.height, 0])
 
             this.xAxis = d3.axisBottom(this.x)
 
