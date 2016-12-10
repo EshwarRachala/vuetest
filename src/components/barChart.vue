@@ -1,5 +1,7 @@
 <template>
-    <div id='divbarchart'></div>
+    <div id="divbarchart" style="height:345px;">
+    <div id="divgraph"></div>
+    </div>
 </template>
 
 <script>
@@ -84,13 +86,18 @@
             let height = this.height
             let width = this.width
             var margin = {
-                top: 20,
-                right: 20,
-                bottom: 95,
-                left: 50
-            }
-            width = 800
-            height = 500
+                    top: 20,
+                    right: 20,
+                    bottom: 95,
+                    left: 50
+                }
+                // width = 800
+                // height = 500
+
+            width = document.getElementById('divbarchart').offsetWidth
+            height = document.getElementById('divbarchart').offsetHeight - document.getElementById('divgraph').offsetHeight
+
+
 
             this.height = height;
             this.width = width;
