@@ -54,19 +54,40 @@
                     return d.close
                 })])
 
-
                 this.svg.append('g').attr('transform', 'translate(0,' + this.height + ')')
                     .call(d3.axisBottom(this.x))
 
                 this.svg.append('g').call(d3.axisLeft(this.y))
 
-                const line = d3.line().x(function(d) {
+                const line = d3.line().curve(d3.curveCatmullRom.alpha(0)).x(function(d) {
                     return x(d.date)
                 }).y(function(d) {
                     return y(d.close)
                 })
 
+                const line1 = d3.line().curve(d3.curveCatmullRom.alpha(0)).x(function(d) {
+                    return x(d.date)
+                }).y(function(d) {
+                    return y(d.close) + 10
+                })
+
+                const circle = svg.append('g').
+                selectAll('circle').data(data)
+                    .enter()
+                    .append('circle').
+                attr('cx', function(d) {
+                        return x(d.date)
+                    })
+                    .attr('cy', function(d) {
+                        return y(d.close)
+                    })
+                    .attr('r', 6)
+                    .attr('fill', 'red')
+                    .attr('stroke', 'black')
+
+
                 svg.append('path').data([data]).attr('class', 'line').attr('d', line)
+                svg.append('path').data([data]).attr('class', 'line').attr('d', line1)
 
             }
         },

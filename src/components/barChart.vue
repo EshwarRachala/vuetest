@@ -121,7 +121,7 @@
 
             this.yAxis = d3.axisLeft(this.y)
 
-            this.svg.append('g').attr('class', 'y axis').call(this.yAxis)
+            this.svg.append('g').attr('class', 'yAxis').call(this.yAxis)
 
             this.svg.append('g')
                 .attr('class', 'xAxis')
