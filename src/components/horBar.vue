@@ -17,43 +17,67 @@
                 svg: null,
                 x: null,
                 y: null,
-                yAxis: null,
-                xAxis: null,
                 height: null,
                 width: null
             }
         },
         watch: {
             'data': function() {
-                this.update(this.data)
+                this.update()
             }
         },
         methods: {
-            update: function(data) {
+            update: function() {
                 const d3 = this.$d3
+                const data = this.data
 
                 this.x.domain([0, d3.max(this.data, (d) => +d.age)])
-
                 this.y.domain(this.data.map((d) => d.name))
 
-                const bars = this.svg.selectAll('rect').data(data)
+                this.yAxis = d3.axisLeft(this.y)
+                this.xAxis = d3.axisBottom(this.x)
 
-                bars.exit().remove()
+                const bar = this.svg.selectAll('.bar').data(data)
 
-                bars.enter()
-                    .append('rect')
-                    .merge(bars)
+                bar.enter().append('rect')
                     .attr('class', 'bar')
                     .attr('x', 0)
                     .attr('y', (d) => this.y(d.name))
                     .attr('height', this.y.bandwidth())
                     .attr('width', (d) => this.x(d.age))
 
-                this.svg.select('.yAxis').call(this.yAxis)
+                bar.exit().remove()
+
+                bar.transition(750)
+                    .attr('x', 0)
+                    .attr('y', (d) => this.y(d.name))
+                    .attr('height', this.y.bandwidth())
+                    .attr('width', (d) => this.x(d.age))
+
+                this.svg.select('.y').remove()
+
+                this.svg.select('.x').remove()
+
+                this.svg.append('g').attr('class', 'y axis').transition(750).call((this.yAxis))
+
+                this.svg.append('g')
+                    .attr('class', 'x axis')
+                    .transition(750)
+                    .attr('transform', 'translate(0,' + this.height + ')')
+                    .call(this.xAxis)
+                    .selectAll('text')
+                    .style('font-size', '16px')
+                    .style('text-anchor', 'end')
+                    .attr('dx', '-.8em')
+                    .attr('dy', '.15em')
+
+                // this.svg.select('.y .axis').transition(750).call(this.yAxis)
+                // this.svg.select('.x .axis').transition(750).call(this.xAxis)
             }
         },
         mounted: function() {
             const d3 = this.$d3
+
             const margin = {
                 top: 15,
                 right: 15,
@@ -74,20 +98,10 @@
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
             this.x = d3.scaleLinear().domain([0, d3.max(this.data, (d) => +d.age)]).range([0, this.width])
-
             this.y = d3.scaleBand().domain(this.data.map((d) => d.name)).range([this.height, 0]).padding(0.1)
-
 
             this.yAxis = d3.axisLeft(this.y)
             this.xAxis = d3.axisBottom(this.x)
-
-            this.svg.selectAll('rect').data(this.data).enter()
-                .append('rect')
-                .attr('class', 'bar')
-                .attr('x', 0)
-                .attr('y', (d) => this.y(d.name))
-                .attr('height', this.y.bandwidth())
-                .attr('width', (d) => this.x(d.age))
 
             this.svg.append('g').attr('class', 'y axis').call(this.yAxis)
 
@@ -100,6 +114,19 @@
                 .style('text-anchor', 'end')
                 .attr('dx', '-.8em')
                 .attr('dy', '.15em')
+
+
+            const bars = this.svg.selectAll('.bar')
+                .data(this.data)
+                .enter()
+                .append('rect')
+                .attr('class', 'bar')
+                .attr('x', 0)
+                .attr('y', (d) => this.y(d.name))
+                .attr('height', this.y.bandwidth())
+                .attr('width', (d) => this.x(d.age))
+
+            //   this.update()
         }
     }
 </script>

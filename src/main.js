@@ -28,5 +28,4 @@ Object.keys(routes).forEach((route) => {
 })
 page('*', () => app.ViewComponent = require('./pages/404.vue'))
 page()
-
-/* eslint-enable*/
+    /* eslint-enable*/

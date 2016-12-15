@@ -71,11 +71,7 @@
                     return y(d.close) + 10
                 })
 
-                const circle = svg.append('g').
-                selectAll('circle').data(data)
-                    .enter()
-                    .append('circle').
-                attr('cx', function(d) {
+                svg.append('g').selectAll('circle').data(data).enter().append('circle').attr('cx', function(d) {
                         return x(d.date)
                     })
                     .attr('cy', function(d) {
@@ -85,10 +81,8 @@
                     .attr('fill', 'red')
                     .attr('stroke', 'black')
 
-
                 svg.append('path').data([data]).attr('class', 'line').attr('d', line)
                 svg.append('path').data([data]).attr('class', 'line').attr('d', line1)
-
             }
         },
         mounted: function() {
