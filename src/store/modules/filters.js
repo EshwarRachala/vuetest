@@ -36,7 +36,7 @@ const mutations = {
             state.bardata.push({ 'name': 'Sachin', 'age': 27 })
         } else if (criteria.key === 'Frequency') {
             state.criteria.Frequency = criteria.value
-            state.bardata = [{ 'name': 'Peter', 'age': 33 }, { 'name': 'James', 'age': 3 }, { 'name': 'Nora', 'age': 15 }]
+            state.bardata.push.apply(state.bardata, [{ 'name': 'Janet', 'age': 13 }, { 'name': 'Tanvi', 'age': 3 }])
         }
     },
     [types.BARDATA](state, value) {

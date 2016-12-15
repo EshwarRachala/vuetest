@@ -29,7 +29,6 @@
         methods: {
             update: function() {
                 const d3 = this.$d3
-                const data = this.data
 
                 this.x.domain([0, d3.max(this.data, (d) => +d.age)])
                 this.y.domain(this.data.map((d) => d.name))
@@ -37,7 +36,7 @@
                 this.yAxis = d3.axisLeft(this.y)
                 this.xAxis = d3.axisBottom(this.x)
 
-                const bar = this.svg.selectAll('.bar').data(data)
+                const bar = this.svg.selectAll('.bar').data(this.data)
 
                 bar.enter().append('rect')
                     .attr('class', 'bar')
