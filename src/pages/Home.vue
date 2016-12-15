@@ -4,8 +4,7 @@
             <section class="ph3 ph5-ns">
                 <horbar :data="bardata"/>
                 <linegraph :data="linedata"/>
-                <barchart :data="bardata"/>   
-                           
+                <barchart :data="bardata"/>                              
             </section>
         </Filters>
     </main-layout>

@@ -54,7 +54,6 @@
                     .attr('width', barWidth - 1)
                     .attr('height', (d) => this.height - this.y(d.age))
 
-
                 this.svg.select('.y').remove()
 
                 this.svg.select('.x').remove()
