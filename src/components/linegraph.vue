@@ -29,79 +29,65 @@
         },
         watch: {
             'data': function() {
-                this.update(this.data)
+                this.update()
             }
         },
         methods: {
-            update: function(data) {
+            update: function () {
                 const d3 = this.$d3
                 const parseTime = d3.timeParse('%d-%b-%y')
 
-                const x = this.x
-                const y = this.y
-                const svg = this.svg
+                this.data.forEach(
+                    (d) => {
+                        d.date = parseTime(d.date)
+                        d.close = +d.close
+                    })
 
-                data.forEach(function(d) {
-                    d.date = parseTime(d.date)
-                    d.close = +d.close
-                })
+                this.x = this.x.domain(d3.extent(this.data, (d) => d.date))
 
-                x.domain(d3.extent(data, function(d) {
-                    return d.date
-                }))
+                this.y = this.y.domain([0, d3.max(this.data, (d) => d.close)])
+             
+                this.svg.select('.x').remove()
 
-                y.domain([0, d3.max(data, function(d) {
-                    return d.close
-                })])
+                this.svg.select('.y').remove()
 
-                this.svg.append('g').attr('transform', 'translate(0,' + this.height + ')')
-                    .call(d3.axisBottom(this.x))
+                this.svg.append('g').attr('transform', 'translate(0,' + this.height + ')').call(d3.axisBottom(this.x).ticks(15))
 
                 this.svg.append('g').call(d3.axisLeft(this.y))
 
-                const line = d3.line().curve(d3.curveCatmullRom.alpha(0)).x(function(d) {
-                    return x(d.date)
-                }).y(function(d) {
-                    return y(d.close)
-                })
+                this.svg.select('.line').remove()
 
-                const line1 = d3.line().curve(d3.curveCatmullRom.alpha(0)).x(function(d) {
-                    return x(d.date)
-                }).y(function(d) {
-                    return y(d.close) + 10
-                })
+                 this.svg.select('.circle').remove()
+                 
+                 const line = d3.line().curve(d3.curveCatmullRom.alpha(0)).x((d) => this.x(d.date)).y((d) => this.y(d.close))
 
-                svg.append('g').selectAll('circle').data(data).enter().append('circle').attr('cx', function(d) {
-                        return x(d.date)
-                    })
-                    .attr('cy', function(d) {
-                        return y(d.close)
-                    })
-                    .attr('r', 6)
-                    .attr('fill', 'red')
-                    .attr('stroke', 'black')
-
-                svg.append('path').data([data]).attr('class', 'line').attr('d', line)
-                svg.append('path').data([data]).attr('class', 'line').attr('d', line1)
+                 this.svg.append('path').data([this.data]).attr('class', 'line').attr('d', line)
             }
         },
         mounted: function() {
             const d3 = this.$d3
-            const data = this.data
             const margin = {
                 top: 15,
                 right: 15,
                 bottom: 60,
                 left: 50
             }
+
             const parseTime = d3.timeParse('%d-%b-%y')
+
+            this.data.forEach(
+                (d) => {
+                    d.date = parseTime(d.date)
+                    d.close = +d.close
+                })
+
             this.width = document.getElementById('chartcontainer').offsetWidth
+
             this.height = (document.getElementById('chartcontainer').offsetHeight - document.getElementById('divgraph').offsetHeight)
 
             this.svg =
                 d3.select(this.$el)
                 .append('svg')
-                // .style('background-color', 'red')
                 .attr('width', '100%')
                 .attr('height', '100%')
                 .attr('viewBox', '0 0 ' + (Math.max(this.width, this.height) + margin.left + margin.right) + ' ' +
@@ -110,11 +96,28 @@
                 .append('g')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-            this.x = d3.scaleTime().range([0, this.width])
+            this.x = d3.scaleTime().range([0, this.width]).domain(d3.extent(this.data, (d) => d.date))
 
-            this.y = d3.scaleLinear().range([this.height, 0])
+            this.y = d3.scaleLinear().range([this.height, 0]).domain([0, d3.max(this.data, (d) => d.close)])
 
-            this.update(data)
+            this.svg.append('g').attr('class', 'x axis').attr('transform', 'translate(0,' + this.height + ')').call(d3.axisBottom(this.x).ticks(15))
+
+            this.svg.append('g').attr('class', 'y axis').call(d3.axisLeft(this.y))
+
+            const line = d3.line().curve(d3.curveCatmullRom.alpha(0)).x((d) => this.x(d.date)).y((d) => this.y(d.close))
+
+            this.svg.append('g')
+            .attr('class', 'circle')
+            .selectAll('circle')
+            .data(this.data)
+            .enter()
+                .append('circle').attr('cx', (d) => this.x(d.date))
+                .attr('cy', (d) => this.y(d.close))
+                .attr('r', 6)
+                .attr('fill', 'red')
+                .attr('stroke', 'black')
+
+            this.svg.append('path').data([this.data]).attr('class', 'line').attr('d', line)
         }
     }
 </script>

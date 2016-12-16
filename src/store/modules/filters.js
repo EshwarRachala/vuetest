@@ -10,11 +10,7 @@ const state = {
         Frequency: 'monthly'
     },
     bardata: [{ 'name': 'Peter', 'age': 33 }, { 'name': 'James', 'age': 3 }, { 'name': 'Nora', 'age': 15 }],
-    linedata: [{ date: '1-May-12', 'close': 58.33 },
-        { date: '21-Jan-13', 'close': 158.33 },
-        { date: '11-May-13', 'close': 18.33 },
-        { date: '1-Dec-14', 'close': 88.33 }
-    ]
+    linedata: [{ date: '1-May-12', 'close': 58.33 }, { date: '21-Jan-13', 'close': 158.33 }]
 }
 
 const getters = {
@@ -34,9 +30,16 @@ const mutations = {
         if (criteria.key === 'Auths') {
             state.criteria.Auths = criteria.value
             state.bardata.push({ 'name': 'Sachin', 'age': 27 })
+
+            state.linedata === null
+                // state.linedata.push({ date: '11-May-13', close: 18.33 })
         } else if (criteria.key === 'Frequency') {
             state.criteria.Frequency = criteria.value
+
             state.bardata.push.apply(state.bardata, [{ 'name': 'Janet', 'age': 13 }, { 'name': 'Tanvi', 'age': 3 }])
+
+            state.linedata === null
+                //   state.linedata.push.apply(state.linedata, [{ date: '1-Dec-14', close: 88.33 }])
         }
     },
     [types.BARDATA](state, value) {

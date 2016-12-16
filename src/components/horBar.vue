@@ -69,9 +69,6 @@
                     .style('text-anchor', 'end')
                     .attr('dx', '-.8em')
                     .attr('dy', '.15em')
-
-                // this.svg.select('.y .axis').transition(750).call(this.yAxis)
-                // this.svg.select('.x .axis').transition(750).call(this.xAxis)
             }
         },
         mounted: function() {
@@ -114,8 +111,7 @@
                 .attr('dx', '-.8em')
                 .attr('dy', '.15em')
 
-
-            const bars = this.svg.selectAll('.bar')
+            this.svg.selectAll('.bar')
                 .data(this.data)
                 .enter()
                 .append('rect')
@@ -124,8 +120,6 @@
                 .attr('y', (d) => this.y(d.name))
                 .attr('height', this.y.bandwidth())
                 .attr('width', (d) => this.x(d.age))
-
-            //   this.update()
         }
     }
 </script>
